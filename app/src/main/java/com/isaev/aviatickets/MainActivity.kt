@@ -17,4 +17,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
     }
+
+
+    private companion object {
+        const val TAG = "MainActivity"
+    }
 }
