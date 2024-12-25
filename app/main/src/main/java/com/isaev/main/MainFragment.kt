@@ -7,7 +7,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+import com.google.android.material.textfield.TextInputEditText
 import com.isaev.common.Network
+import com.isaev.search.SearchFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -57,6 +59,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                     flyCardAdapter.submitList(offers)
                 }
             }
+        }
+
+        view.findViewById<TextInputEditText>(R.id.where_input).setOnClickListener {
+            SearchFragment().show(parentFragmentManager, null)
         }
     }
 
