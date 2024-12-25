@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/black_variant">
+    tools:background="@color/black">
 
     <TextView
         android:id="@+id/tickets_title"
@@ -123,11 +123,13 @@
         app:layout_constraintTop_toBottomOf="@id/city_down_background" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fly_cards_recycler"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:layout_marginTop="26dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/music_fly_title" />
+        app:layout_constraintTop_toBottomOf="@id/music_fly_title"
+        tools:listitem="@layout/fly_card" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
