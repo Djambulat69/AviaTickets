@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="hint_square_icon_size">48dp</dimen>
+    <dimen name="hint_square_corners">8dp</dimen>
+
+    <dimen name="popular_city_img_size">40dp</dimen>
+</resources>
