@@ -1,5 +1,6 @@
 package com.isaev.common
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -19,4 +20,19 @@ data class Offer(
 data class Price(
     val value: Int
 )
+
+@Serializable
+data class TicketOffers(
+    @SerialName("tickets_offers") val ticketOffers: List<TicketOffer>
+)
+
+@Serializable
+data class TicketOffer(
+    val id: Int,
+    val title: String,
+    @SerialName("time_range") val timeRange: List<String>,
+    val price: Price
+)
+
+
 

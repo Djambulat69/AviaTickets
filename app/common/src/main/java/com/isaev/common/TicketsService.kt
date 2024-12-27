@@ -7,6 +7,6 @@ interface TicketsService {
     suspend fun getMain(): MainResponse
 
     @GET("uc?id=13WhZ5ahHBwMiHRXxWPq-bYlRVRwAujta&export=download")
-    suspend fun getSearch()
+    suspend fun getFirstTickets(): TicketOffers
 }
 

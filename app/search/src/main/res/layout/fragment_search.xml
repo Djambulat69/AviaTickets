@@ -40,6 +40,7 @@
         app:layout_constraintTop_toTopOf="@id/city_picker_bg" />
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/from_input"
         style="@style/nonEditableTextInputStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

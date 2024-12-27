@@ -2,32 +2,45 @@ package com.isaev.main
 
 import android.graphics.Rect
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-import com.google.android.material.textfield.TextInputEditText
+import com.isaev.main.databinding.FragmentMainBinding
 import com.isaev.search.SearchFragment
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
+    private var _binding: FragmentMainBinding? = null
+    private val binding: FragmentMainBinding get() = _binding!!
+
     private val viewModel: MainViewModel by viewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentMainBinding.inflate(inflater)
+
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val flyCardsRecycler = view.findViewById<RecyclerView>(R.id.fly_cards_recycler)
-
         val flyCardAdapter = FlyCardAdapter()
 
-        flyCardsRecycler.adapter = flyCardAdapter
+        binding.flyCardsRecycler.adapter = flyCardAdapter
 
-        flyCardsRecycler.addItemDecoration(object : ItemDecoration() {
+        binding.flyCardsRecycler.addItemDecoration(object : ItemDecoration() {
             override fun getItemOffsets(
                 outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State
             ) {
@@ -42,9 +55,14 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
         })
 
-        val whereEditText = view.findViewById<TextInputEditText>(R.id.where_input)
-        whereEditText.setOnClickListener {
-            SearchFragment().show(parentFragmentManager, null)
+
+        binding.whereInput.setOnClickListener {
+            if (binding.fromInput.text.toString() == "") {
+                binding.fromInput.setText(getString(com.isaev.network.R.string.moscow))
+            }
+
+            SearchFragment.newInstance(binding.fromInput.text?.toString().orEmpty())
+                .show(parentFragmentManager, null)
         }
 
         with(viewLifecycleOwner.lifecycleScope) {
@@ -56,14 +74,17 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
     }
 
-    fun pickWhereCity(city: String) {
-        val fromEditText = requireView().findViewById<TextInputEditText>(R.id.from_input)
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
 
-        if (fromEditText.text.toString() == "") {
-            fromEditText.setText(getString(com.isaev.network.R.string.moscow))
+    fun pickWhereCity(city: String) {
+        if (binding.fromInput.text.toString() == "") {
+            binding.fromInput.setText(getString(com.isaev.network.R.string.moscow))
         }
 
-        (requireContext() as? TicketsOpener)?.openTickets(city, fromEditText.text.toString())
+        (requireContext() as? TicketsOpener)?.openTickets(city, binding.fromInput.text.toString())
     }
 
     companion object {

@@ -19,4 +19,6 @@ object Network {
 
 
     suspend fun getMain(): List<Offer> = service.getMain().offers
+
+    suspend fun getFirstTickets(): List<TicketOffer> = service.getFirstTickets().ticketOffers
 }
