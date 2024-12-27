@@ -14,12 +14,9 @@ import kotlinx.coroutines.withContext
 
 class MainViewModel : ViewModel() {
 
-    private val _whereCityState: MutableStateFlow<String> = MutableStateFlow("")
     private val _musicAirLinesState: MutableStateFlow<List<Offer>?> = MutableStateFlow(null)
 
-    val whereCityState: StateFlow<String?> = _whereCityState.asStateFlow()
     val musicAirLinesState: StateFlow<List<Offer>?> = _musicAirLinesState.asStateFlow()
-
 
     init {
         viewModelScope.launch {
@@ -33,10 +30,6 @@ class MainViewModel : ViewModel() {
 
             }
         }
-    }
-
-    fun pickWhereCity(city: String) {
-        _whereCityState.update { city }
     }
 
 }

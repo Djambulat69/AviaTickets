@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back_ticket">обратно</string>
+    <string name="ticket_type">1,эконом</string>
+</resources>

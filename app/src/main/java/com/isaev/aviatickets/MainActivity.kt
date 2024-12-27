@@ -8,9 +8,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.isaev.main.MainFragment
+import com.isaev.main.TicketsOpener
 import com.isaev.search.SearchFragment
+import com.isaev.tickets.TicketsFragment
 
-class MainActivity : AppCompatActivity(), SearchFragment.SearchResultListener {
+class MainActivity : AppCompatActivity(), SearchFragment.SearchResultListener, TicketsOpener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -56,6 +58,14 @@ class MainActivity : AppCompatActivity(), SearchFragment.SearchResultListener {
     override fun onCityPicked(city: String) {
         (supportFragmentManager.findFragmentByTag(MainFragment.TAG) as? MainFragment)
             ?.pickWhereCity(city)
+    }
+
+    override fun openTickets(where: String, from: String) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, TicketsFragment.newInstance(where, from))
+            .addToBackStack(null)
+            .commit()
     }
 
     private companion object {

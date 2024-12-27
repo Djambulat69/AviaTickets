@@ -17,7 +17,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private val viewModel: MainViewModel by viewModels()
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -43,19 +42,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
         })
 
-        val editText = view.findViewById<TextInputEditText>(R.id.where_input)
-
-        editText.setOnClickListener {
+        val whereEditText = view.findViewById<TextInputEditText>(R.id.where_input)
+        whereEditText.setOnClickListener {
             SearchFragment().show(parentFragmentManager, null)
         }
 
         with(viewLifecycleOwner.lifecycleScope) {
-            launch {
-                viewModel.whereCityState.collect { whereCity ->
-                    editText.setText(whereCity)
-                }
-            }
-
             launch {
                 viewModel.musicAirLinesState.filterNotNull().collect { offers ->
                     flyCardAdapter.submitList(offers)
@@ -65,7 +57,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     fun pickWhereCity(city: String) {
-        viewModel.pickWhereCity(city)
+        val fromEditText = requireView().findViewById<TextInputEditText>(R.id.from_input)
+
+        if (fromEditText.text.toString() == "") {
+            fromEditText.setText(getString(com.isaev.network.R.string.moscow))
+        }
+
+        (requireContext() as? TicketsOpener)?.openTickets(city, fromEditText.text.toString())
     }
 
     companion object {

@@ -5,4 +5,6 @@
     <string name="from_hint">Откуда - Москва</string>
     <string name="where_hint">Куда - Турция</string>
     <string name="music_fly">Музыкально отлететь</string>
+
+    <string name="moscow">Москва</string>
 </resources>

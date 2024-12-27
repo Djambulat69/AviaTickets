@@ -56,6 +56,7 @@
         app:tint="#9FDBDBDB" />
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/from_input"
         style="@style/defaultTextInputStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
