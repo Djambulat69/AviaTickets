@@ -6,6 +6,8 @@ fun Int.formatPrice(): String {
 
     val sb = StringBuilder()
 
+    sb.append("₽ ")
+
     for (i in str.indices) {
         sb.append(str[n - 1 - i])
         if ((i + 1) % 3 == 0) {

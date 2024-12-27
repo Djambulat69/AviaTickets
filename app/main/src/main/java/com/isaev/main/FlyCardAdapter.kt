@@ -14,6 +14,12 @@ import com.isaev.common.formatPrice
 class FlyCardAdapter :
     ListAdapter<Offer, FlyCardAdapter.FlyCardViewHolder>(OfferDiffUtilItemCallback) {
 
+    private val pics = mutableMapOf(
+        1 to R.drawable.die_antwood,
+        2 to R.drawable.socrat_i_lera,
+        3 to R.drawable.lampabikt
+    )
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlyCardViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fly_card, parent, false)
@@ -25,7 +31,7 @@ class FlyCardAdapter :
         holder.bind(getItem(position))
     }
 
-    class FlyCardViewHolder(itemView: View) : ViewHolder(itemView) {
+    inner class FlyCardViewHolder(itemView: View) : ViewHolder(itemView) {
 
         private val image = itemView.findViewById<ImageView>(R.id.fly_card_image)
         private val title = itemView.findViewById<TextView>(R.id.fly_card_title)
@@ -35,26 +41,10 @@ class FlyCardAdapter :
         fun bind(offer: Offer) {
             title.text = offer.title
             city.text = offer.town
-            price.text = "от ${offer.price.value.formatPrice()} ₽"
+            price.text = "от ${offer.price.value.formatPrice()}"
 
-            when (offer.id) {
-                1 -> {
-                    image.setImageResource(
-                        R.drawable.die_antwood
-                    )
-                }
-
-                2 -> {
-                    image.setImageResource(
-                        R.drawable.socrat_i_lera
-                    )
-                }
-
-                3 -> {
-                    image.setImageResource(
-                        R.drawable.lampabikt
-                    )
-                }
+            pics[offer.id]?.let {
+                image.setImageResource(it)
             }
         }
     }

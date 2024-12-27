@@ -8,8 +8,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.isaev.main.MainFragment
+import com.isaev.search.SearchFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SearchFragment.SearchResultListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,8 +27,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, MainFragment())
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragment_container, MainFragment::class.java, null, MainFragment.TAG)
                 .commit()
         }
 
@@ -36,7 +38,12 @@ class MainActivity : AppCompatActivity() {
                 R.id.main_menu_item -> {
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.fragment_container, MainFragment::class.java, null)
+                        .replace(
+                            R.id.fragment_container,
+                            MainFragment::class.java,
+                            null,
+                            MainFragment.TAG
+                        )
                         .commit()
                     true
                 }
@@ -46,6 +53,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCityPicked(city: String) {
+        (supportFragmentManager.findFragmentByTag(MainFragment.TAG) as? MainFragment)
+            ?.pickWhereCity(city)
+    }
 
     private companion object {
         const val TAG = "MainActivity"

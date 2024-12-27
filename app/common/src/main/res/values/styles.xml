@@ -6,4 +6,25 @@
         <item name="cornerSize">16dp</item>
     </style>
 
+    <style name="defaultTextInputStyle">
+        <item name="android:background">@null</item>
+        <item name="android:digits">@string/cyrillic_symbols</item>
+        <item name="android:inputType">text</item>
+        <item name="android:maxLength">20</item>
+        <item name="maxLines">1</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@color/grey6</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="nonEditableTextInputStyle">
+        <item name="android:background">@null</item>
+        <item name="android:inputType">none</item>
+        <item name="android:editable">false</item>
+        <item name="android:maxLength">20</item>
+        <item name="maxLines">1</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@color/grey6</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
