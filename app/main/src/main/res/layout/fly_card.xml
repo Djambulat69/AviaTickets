@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="132dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="@color/black">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/fly_card_image"
+        android:layout_width="132dp"
+        android:layout_height="132dp"
+        android:scaleType="centerCrop"
+        app:shapeAppearance="@style/roundedImageView"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/fly_card_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="Die Antwood" />
+
+    <TextView
+        android:id="@+id/fly_card_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        tools:text="Будапешт" />
+
+    <TextView
+        android:id="@+id/fly_card_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/ic_plane"
+        android:drawablePadding="4dp"
+        android:padding="4dp"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        tools:text="от 22 264 ₽" />
+
+</LinearLayout>

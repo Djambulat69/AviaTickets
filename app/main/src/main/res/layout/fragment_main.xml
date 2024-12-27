@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/black">
+
+    <TextView
+        android:id="@+id/tickets_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:gravity="center"
+        android:text="@string/search_sale_tickets"
+        android:textColor="@color/text_white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/city_down_background"
+        android:layout_width="0dp"
+        android:layout_height="122dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="38dp"
+        android:background="@drawable/grey3_round_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tickets_title" />
+
+    <View
+        android:id="@+id/city_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/city_bg"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/city_down_background"
+        app:layout_constraintEnd_toEndOf="@id/city_down_background"
+        app:layout_constraintStart_toStartOf="@id/city_down_background"
+        app:layout_constraintTop_toTopOf="@id/city_down_background" />
+
+    <ImageView
+        android:id="@+id/search_icon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="12dp"
+        android:elevation="4dp"
+        android:src="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@id/city_background"
+        app:layout_constraintStart_toStartOf="@id/city_background"
+        app:layout_constraintTop_toTopOf="@id/city_background"
+        app:tint="#9FDBDBDB" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        style="@style/defaultTextInputStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="1dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="4dp"
+        android:hint="@string/from_hint"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/divider"
+        app:layout_constraintEnd_toEndOf="@id/divider"
+        app:layout_constraintStart_toStartOf="@id/divider" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#FF9F9F9F"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/city_background"
+        app:layout_constraintEnd_toEndOf="@id/city_background"
+        app:layout_constraintStart_toEndOf="@id/search_icon"
+        app:layout_constraintTop_toTopOf="@id/city_background" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/where_input"
+        style="@style/nonEditableTextInputStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="1dp"
+        android:layout_marginTop="8dp"
+        android:elevation="4dp"
+        android:hint="@string/where_hint"
+        android:inputType="none"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/divider"
+        app:layout_constraintStart_toStartOf="@id/divider"
+        app:layout_constraintTop_toBottomOf="@id/divider" />
+
+    <TextView
+        android:id="@+id/music_fly_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/music_fly"
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/city_down_background" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fly_cards_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginTop="26dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/music_fly_title"
+        tools:listitem="@layout/fly_card" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bottom_sheet_bg"
+    android:paddingBottom="100dp">
+
+    <View
+        android:id="@+id/bottom_sheet_picker"
+        android:layout_width="38dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/picker_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/city_picker_bg"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/grey3_round_bg"
+        android:elevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/bottom_sheet_picker" />
+
+    <View
+        android:id="@+id/city_picker_divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@color/grey4"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/city_picker_bg"
+        app:layout_constraintEnd_toEndOf="@id/city_picker_bg"
+        app:layout_constraintStart_toStartOf="@id/city_picker_bg"
+        app:layout_constraintTop_toTopOf="@id/city_picker_bg" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        style="@style/nonEditableTextInputStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:drawableStart="@drawable/ic_boeing"
+        android:drawablePadding="8dp"
+        android:elevation="4dp"
+        android:hint="@string/from_hint"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/city_picker_divider"
+        app:layout_constraintEnd_toEndOf="@id/city_picker_bg"
+        app:layout_constraintStart_toStartOf="@id/city_picker_bg"
+        tools:text="Москва" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        style="@style/nonEditableTextInputStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="14dp"
+        android:drawableTint="@android:color/white"
+        android:elevation="4dp"
+        android:hint="@string/where_hint"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/city_picker_bg"
+        app:layout_constraintStart_toStartOf="@id/city_picker_bg"
+        app:layout_constraintTop_toBottomOf="@id/city_picker_divider" />
+
+    <ImageView
+        android:id="@+id/hard_route_hint"
+        android:layout_width="@dimen/hint_square_icon_size"
+        android:layout_height="@dimen/hint_square_icon_size"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/hard_route_bg"
+        android:padding="12dp"
+        android:src="@drawable/ic_route"
+        app:layout_constraintEnd_toStartOf="@id/anywhere_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/city_picker_bg" />
+
+    <ImageView
+        android:id="@+id/anywhere_hint"
+        android:layout_width="@dimen/hint_square_icon_size"
+        android:layout_height="@dimen/hint_square_icon_size"
+        android:layout_marginTop="26dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/anywhere_hint_bg"
+        android:padding="12dp"
+        android:src="@drawable/ic_planet"
+        app:layout_constraintEnd_toStartOf="@id/weekends_hint"
+        app:layout_constraintStart_toEndOf="@id/hard_route_hint"
+        app:layout_constraintTop_toBottomOf="@id/city_picker_bg" />
+
+    <ImageView
+        android:id="@+id/weekends_hint"
+        android:layout_width="@dimen/hint_square_icon_size"
+        android:layout_height="@dimen/hint_square_icon_size"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/weekends_hint_bg"
+        android:padding="12dp"
+        android:src="@drawable/ic_calendar"
+        app:layout_constraintEnd_toStartOf="@id/hot_hint"
+        app:layout_constraintStart_toEndOf="@id/anywhere_hint"
+        app:layout_constraintTop_toBottomOf="@id/city_picker_bg" />
+
+    <ImageView
+        android:id="@+id/hot_hint"
+        android:layout_width="@dimen/hint_square_icon_size"
+        android:layout_height="@dimen/hint_square_icon_size"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/hot_hint_bg"
+        android:padding="12dp"
+        android:src="@drawable/ic_fire"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/weekends_hint"
+        app:layout_constraintTop_toBottomOf="@id/city_picker_bg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/hard_route"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/hard_route_hint"
+        app:layout_constraintStart_toStartOf="@id/hard_route_hint"
+        app:layout_constraintTop_toBottomOf="@id/hard_route_hint" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/anywhere"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/anywhere_hint"
+        app:layout_constraintStart_toStartOf="@id/anywhere_hint"
+        app:layout_constraintTop_toBottomOf="@id/anywhere_hint" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/weekends"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/weekends_hint"
+        app:layout_constraintStart_toStartOf="@id/weekends_hint"
+        app:layout_constraintTop_toBottomOf="@id/weekends_hint" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/hot_tickets"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/hot_hint"
+        app:layout_constraintStart_toStartOf="@id/hot_hint"
+        app:layout_constraintTop_toBottomOf="@id/hot_hint" />
+
+
+    <View
+        android:id="@+id/popular_cities_bg"
+        android:layout_width="match_parent"
+        android:layout_height="216dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/grey3_round_bg"
+        app:layout_constraintTop_toBottomOf="@id/hard_route_hint" />
+
+
+    <LinearLayout
+        android:id="@+id/stambul_hint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/sochi_hint"
+        app:layout_constraintEnd_toEndOf="@id/popular_cities_bg"
+        app:layout_constraintStart_toStartOf="@id/popular_cities_bg"
+        app:layout_constraintTop_toTopOf="@id/popular_cities_bg">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/popular_city_img_size"
+            android:layout_height="@dimen/popular_city_img_size"
+            android:scaleType="centerCrop"
+            app:shapeAppearance="@style/RoundedCornersShape8"
+            app:srcCompat="@drawable/stambul" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/stambul"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/popular_direction"
+                android:textColor="@color/grey5"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sochi_hint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/phuket_hint"
+        app:layout_constraintEnd_toEndOf="@id/popular_cities_bg"
+        app:layout_constraintStart_toStartOf="@id/popular_cities_bg"
+        app:layout_constraintTop_toBottomOf="@id/stambul_hint">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/popular_city_img_size"
+            android:layout_height="@dimen/popular_city_img_size"
+            android:scaleType="centerCrop"
+            app:shapeAppearance="@style/RoundedCornersShape8"
+            app:srcCompat="@drawable/sochi" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/sochi"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/popular_direction"
+                android:textColor="@color/grey5"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/phuket_hint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/popular_cities_bg"
+        app:layout_constraintEnd_toEndOf="@id/popular_cities_bg"
+        app:layout_constraintStart_toStartOf="@id/popular_cities_bg"
+        app:layout_constraintTop_toBottomOf="@id/sochi_hint">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="@dimen/popular_city_img_size"
+            android:layout_height="@dimen/popular_city_img_size"
+            android:scaleType="centerCrop"
+            app:shapeAppearance="@style/RoundedCornersShape8"
+            app:srcCompat="@drawable/phuket" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/phuket"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/popular_direction"
+                android:textColor="@color/grey5"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/grey4"
+        app:layout_constraintEnd_toEndOf="@id/popular_cities_bg"
+        app:layout_constraintStart_toStartOf="@id/popular_cities_bg"
+        app:layout_constraintTop_toBottomOf="@id/stambul_hint" />
+
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/grey4"
+        app:layout_constraintEnd_toEndOf="@id/popular_cities_bg"
+        app:layout_constraintStart_toStartOf="@id/popular_cities_bg"
+        app:layout_constraintTop_toBottomOf="@id/sochi_hint" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/grey4"
+        app:layout_constraintEnd_toEndOf="@id/popular_cities_bg"
+        app:layout_constraintStart_toStartOf="@id/popular_cities_bg"
+        app:layout_constraintTop_toBottomOf="@id/phuket_hint" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

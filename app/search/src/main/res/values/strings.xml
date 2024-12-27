@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hard_route">Сложный\nмаршрут</string>
+    <string name="anywhere">Куда угодно</string>
+    <string name="weekends">Выходные</string>
+    <string name="hot_tickets">Горячие\nбилеты</string>
+
+    <string name="stambul">Стамбул</string>
+    <string name="sochi">Сочи</string>
+    <string name="phuket">Пхукет</string>
+
+    <string name="popular_direction">Популярное направление</string>
+
+</resources>
