@@ -42,7 +42,7 @@ data class AllTickets(
 @Serializable
 data class Ticket(
     val id: Int,
-    val badge: String?,
+    val badge: String? = null,
     val price: Price,
     @SerialName("provider_name") val providerName: String,
     val company: String,
@@ -73,12 +73,12 @@ data class Arrival(
 @Serializable
 data class Luggage(
     @SerialName("has_luggage") val hasLuggage: Boolean,
-    val price: Price
+    val price: Price? = null
 )
 
 @Serializable
 data class HandLuggage(
     @SerialName("has_hand_luggage") val hasHandLuggage: Boolean,
-    val size: String
+    val size: String? = null
 )
 

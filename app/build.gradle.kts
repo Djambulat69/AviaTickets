@@ -48,6 +48,7 @@ dependencies {
     implementation(project(":app:main"))
     implementation(project(":app:search"))
     implementation(project(":app:tickets"))
+    implementation(project(":app:alltickets"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

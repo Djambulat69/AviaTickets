@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.isaev.common.BackController
 import com.isaev.common.TicketOffer
 import com.isaev.common.formatPrice
 import com.isaev.tickets.databinding.FragmentTicketsBinding
@@ -30,9 +31,7 @@ class TicketsFragment : Fragment(R.layout.fragment_tickets) {
     private val binding: FragmentTicketsBinding get() = _binding!!
 
     private val colors = listOf(
-        com.isaev.common.R.color.red,
-        com.isaev.common.R.color.blue,
-        com.isaev.common.R.color.white
+        com.isaev.common.R.color.red, com.isaev.common.R.color.blue, com.isaev.common.R.color.white
     )
 
     @Inject
@@ -53,9 +52,7 @@ class TicketsFragment : Fragment(R.layout.fragment_tickets) {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTicketsBinding.inflate(inflater)
         return binding.root
@@ -83,12 +80,21 @@ class TicketsFragment : Fragment(R.layout.fragment_tickets) {
 
         binding.dateOption.text = dateFormatter.format(Date())
 
+        binding.showAllTicketsButton.setOnClickListener {
+            (requireContext() as? AllTicketsOpener)?.openAllTickets(
+                fromCity = binding.fromCity.text.toString(),
+                whereCity = binding.whereCity.text.toString()
+            )
+        }
+
+        binding.backButton.setOnClickListener {
+            (requireContext() as? BackController)?.goBack()
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.ticketsState
-                .filterNotNull()
-                .collect {
-                    showTickets(it)
-                }
+            viewModel.ticketsState.filterNotNull().collect {
+                showTickets(it)
+            }
         }
     }
 
@@ -121,8 +127,7 @@ class TicketsFragment : Fragment(R.layout.fragment_tickets) {
     companion object {
         fun newInstance(where: String, from: String) = TicketsFragment().apply {
             arguments = bundleOf(
-                ARG_WHERE to where,
-                ARG_FROM to from
+                ARG_WHERE to where, ARG_FROM to from
             )
         }
 

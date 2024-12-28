@@ -1,5 +1,6 @@
 package com.isaev.aviatickets
 
+import com.isaev.alltickets.AllTicketsComponent
 import com.isaev.common.Network
 import com.isaev.main.MainComponent
 import com.isaev.tickets.TicketsComponent
@@ -12,6 +13,7 @@ interface AppComponent {
 
     fun mainComponent(): MainComponent.Factory
     fun ticketsComponent(): TicketsComponent.Factory
+    fun allTicketsComponent(): AllTicketsComponent.Factory
 }
 
 @Module
@@ -20,5 +22,5 @@ class AppModule {
     fun provideNetwork(): Network = Network
 }
 
-@Module(subcomponents = [MainComponent::class])
+@Module(subcomponents = [MainComponent::class, AllTicketsComponent::class, TicketsComponent::class])
 class SubcomponentsModule
