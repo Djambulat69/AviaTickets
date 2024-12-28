@@ -15,6 +15,8 @@ import com.isaev.tickets.databinding.FragmentTicketsBinding
 import com.isaev.tickets.databinding.TicketItemBinding
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class TicketsFragment : Fragment(R.layout.fragment_tickets) {
 
@@ -54,6 +56,11 @@ class TicketsFragment : Fragment(R.layout.fragment_tickets) {
             binding.whereCity.text = fromCurrent
             binding.fromCity.text = whereCurrent
         }
+
+        val dateFormatter =
+            SimpleDateFormat("d MMM, EEEEEE", resources.configuration.locales.get(0))
+
+        binding.dateOption.text = dateFormatter.format(Date())
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.ticketsState
