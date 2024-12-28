@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -42,6 +43,8 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation (libs.androidx.fragment.ktx)
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
     implementation(project(":app:common"))
     implementation(project(":app:search"))
     testImplementation(libs.junit)

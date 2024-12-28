@@ -1,5 +1,6 @@
 package com.isaev.main
 
+import android.content.Context
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,18 +15,31 @@ import com.isaev.main.databinding.FragmentMainBinding
 import com.isaev.search.SearchFragment
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import javax.inject.Provider
 
 class MainFragment : Fragment(R.layout.fragment_main) {
+
+    private lateinit var mainComponent: MainComponent
 
     private var _binding: FragmentMainBinding? = null
     private val binding: FragmentMainBinding get() = _binding!!
 
-    private val viewModel: MainViewModel by viewModels()
+    @Inject
+    lateinit var viewModelFactoryProvider: Provider<MainViewModel.Factory>
+
+    private val viewModel: MainViewModel by viewModels { viewModelFactoryProvider.get() }
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        mainComponent = (requireContext().applicationContext as MainComponentProvider).provideMainComponent()
+        mainComponent.inject(this)
+    }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater)
 

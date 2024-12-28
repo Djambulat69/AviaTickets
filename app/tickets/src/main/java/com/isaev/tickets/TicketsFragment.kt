@@ -1,5 +1,6 @@
 package com.isaev.tickets
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +18,12 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
+import javax.inject.Inject
+import javax.inject.Provider
 
 class TicketsFragment : Fragment(R.layout.fragment_tickets) {
+
+    private lateinit var ticketsComponent: TicketsComponent
 
     private var _binding: FragmentTicketsBinding? = null
     private val binding: FragmentTicketsBinding get() = _binding!!
@@ -29,7 +34,18 @@ class TicketsFragment : Fragment(R.layout.fragment_tickets) {
         R.color.white
     )
 
-    private val viewModel: TicketsViewModel by viewModels()
+    @Inject
+    lateinit var viewModelFactoryProvider: Provider<TicketsViewModel.Factory>
+
+    private val viewModel: TicketsViewModel by viewModels { viewModelFactoryProvider.get() }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        ticketsComponent =
+            (requireContext().applicationContext as TicketsComponentProvider).provideTicketsComponentComponent()
+        ticketsComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

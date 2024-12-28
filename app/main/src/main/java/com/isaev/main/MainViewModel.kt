@@ -1,6 +1,7 @@
 package com.isaev.main
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.isaev.common.Network
 import com.isaev.common.Offer
@@ -11,8 +12,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
+class MainViewModel(private val network: Network) : ViewModel() {
 
     private val _musicAirLinesState: MutableStateFlow<List<Offer>?> = MutableStateFlow(null)
 
@@ -22,7 +24,7 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    val offers = Network.getMain()
+                    val offers = network.getMain()
 
                     _musicAirLinesState.update { offers }
                 }
@@ -30,6 +32,13 @@ class MainViewModel : ViewModel() {
 
             }
         }
+    }
+
+    class Factory @Inject constructor(private val network: Network) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return MainViewModel(network) as T
+        }
+
     }
 
 }
