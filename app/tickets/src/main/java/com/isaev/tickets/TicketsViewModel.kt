@@ -1,7 +1,6 @@
 package com.isaev.tickets
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.isaev.common.Network
 import com.isaev.common.TicketOffer
@@ -12,7 +11,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class TicketsViewModel(private val network: Network) : ViewModel() {
+class TicketsViewModel @Inject constructor(private val network: Network) : ViewModel() {
 
     private val _ticketsState = MutableStateFlow<List<TicketOffer>?>(null)
     val ticketsState: StateFlow<List<TicketOffer>?> = _ticketsState.asStateFlow()
@@ -30,11 +29,4 @@ class TicketsViewModel(private val network: Network) : ViewModel() {
             }
         }
     }
-
-    class Factory @Inject constructor(private val network: Network) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return TicketsViewModel(network) as T
-        }
-    }
-
 }

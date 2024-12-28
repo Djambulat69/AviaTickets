@@ -10,6 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.isaev.common.TicketOffer
 import com.isaev.common.formatPrice
 import com.isaev.tickets.databinding.FragmentTicketsBinding
@@ -35,9 +36,13 @@ class TicketsFragment : Fragment(R.layout.fragment_tickets) {
     )
 
     @Inject
-    lateinit var viewModelFactoryProvider: Provider<TicketsViewModel.Factory>
+    lateinit var viewModelProvider: Provider<TicketsViewModel>
 
-    private val viewModel: TicketsViewModel by viewModels { viewModelFactoryProvider.get() }
+    private val viewModel: TicketsViewModel by viewModels {
+        viewModelFactory {
+            addInitializer(TicketsViewModel::class) { viewModelProvider.get() }
+        }
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -121,8 +126,8 @@ class TicketsFragment : Fragment(R.layout.fragment_tickets) {
             )
         }
 
-        const val ARG_WHERE = "arg where"
-        const val ARG_FROM = "arg from"
+        private const val ARG_WHERE = "arg where"
+        private const val ARG_FROM = "arg from"
     }
 
 }

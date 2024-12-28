@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.isaev.main.databinding.FragmentMainBinding
@@ -26,15 +27,20 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private val binding: FragmentMainBinding get() = _binding!!
 
     @Inject
-    lateinit var viewModelFactoryProvider: Provider<MainViewModel.Factory>
+    lateinit var viewModelProvider: Provider<MainViewModel>
 
-    private val viewModel: MainViewModel by viewModels { viewModelFactoryProvider.get() }
+    private val viewModel: MainViewModel by viewModels {
+        viewModelFactory {
+            addInitializer(MainViewModel::class) { viewModelProvider.get() }
+        }
+    }
 
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        mainComponent = (requireContext().applicationContext as MainComponentProvider).provideMainComponent()
+        mainComponent =
+            (requireContext().applicationContext as MainComponentProvider).provideMainComponent()
         mainComponent.inject(this)
     }
 

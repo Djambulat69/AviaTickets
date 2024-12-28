@@ -7,12 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.isaev.common.BackController
 import com.isaev.main.MainFragment
 import com.isaev.main.TicketsOpener
 import com.isaev.search.SearchFragment
 import com.isaev.tickets.TicketsFragment
 
-class MainActivity : AppCompatActivity(), SearchFragment.SearchResultListener, TicketsOpener {
+class MainActivity : AppCompatActivity(), SearchFragment.SearchResultListener, TicketsOpener, BackController {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -66,6 +67,10 @@ class MainActivity : AppCompatActivity(), SearchFragment.SearchResultListener, T
             .replace(R.id.fragment_container, TicketsFragment.newInstance(where, from))
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun goBack() {
+        supportFragmentManager.popBackStack()
     }
 
     private companion object {
