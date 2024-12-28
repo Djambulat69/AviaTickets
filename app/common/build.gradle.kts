@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.isaev.network"
+    namespace = "com.isaev.common"
     compileSdk = 34
 
     defaultConfig {

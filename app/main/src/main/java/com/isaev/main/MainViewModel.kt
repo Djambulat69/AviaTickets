@@ -11,21 +11,19 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
+class MainViewModel @Inject constructor(private val network: Network) : ViewModel() {
 
-    private val _whereCityState: MutableStateFlow<String> = MutableStateFlow("")
     private val _musicAirLinesState: MutableStateFlow<List<Offer>?> = MutableStateFlow(null)
 
-    val whereCityState: StateFlow<String?> = _whereCityState.asStateFlow()
     val musicAirLinesState: StateFlow<List<Offer>?> = _musicAirLinesState.asStateFlow()
-
 
     init {
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    val offers = Network.getMain()
+                    val offers = network.getMain()
 
                     _musicAirLinesState.update { offers }
                 }
@@ -33,10 +31,6 @@ class MainViewModel : ViewModel() {
 
             }
         }
-    }
-
-    fun pickWhereCity(city: String) {
-        _whereCityState.update { city }
     }
 
 }

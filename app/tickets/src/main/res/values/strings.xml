@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back_ticket">обратно</string>
+    <string name="ticket_type">1,эконом</string>
+
+    <string name="direct_races">Прямые рейсы</string>
+    <string name="see_all_tickets">Посмотреть все билеты</string>
+</resources>

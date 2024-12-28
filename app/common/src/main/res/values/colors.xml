@@ -10,4 +10,8 @@
     <color name="grey6">#9F9F9F</color>
 
     <color name="text_white">#D9D9D9</color>
+
+    <color name="red">#FF5E5E</color>
+    <color name="blue">#2261BC</color>
+    <color name="white">#FFFFFF</color>
 </resources>
