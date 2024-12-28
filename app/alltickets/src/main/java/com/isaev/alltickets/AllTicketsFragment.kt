@@ -1,6 +1,7 @@
 package com.isaev.alltickets
 
 import android.content.Context
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.viewModelFactory
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.isaev.alltickets.databinding.FragmentAllTicketsBinding
 import com.isaev.common.BackController
 import kotlinx.coroutines.flow.collect
@@ -70,9 +73,13 @@ class AllTicketsFragment : Fragment(R.layout.fragment_all_tickets) {
             (requireContext() as? BackController)?.goBack()
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.ticketsState.collect {
 
+        val ticketsAdapter = TicketsAdapter()
+        binding.ticketsRecycler.adapter = ticketsAdapter
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.ticketsState.collect { tickets ->
+                ticketsAdapter.submitList(tickets)
             }
         }
     }
