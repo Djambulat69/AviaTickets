@@ -29,9 +29,9 @@ class TicketsFragment : Fragment(R.layout.fragment_tickets) {
     private val binding: FragmentTicketsBinding get() = _binding!!
 
     private val colors = listOf(
-        R.color.red,
-        R.color.blue,
-        R.color.white
+        com.isaev.common.R.color.red,
+        com.isaev.common.R.color.blue,
+        com.isaev.common.R.color.white
     )
 
     @Inject

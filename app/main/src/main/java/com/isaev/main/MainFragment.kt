@@ -72,7 +72,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         binding.whereInput.setOnClickListener {
             if (binding.fromInput.text.toString() == "") {
-                binding.fromInput.setText(getString(com.isaev.network.R.string.moscow))
+                binding.fromInput.setText(getString(com.isaev.common.R.string.moscow))
             }
 
             SearchFragment.newInstance(binding.fromInput.text?.toString().orEmpty())
@@ -95,7 +95,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     fun pickWhereCity(city: String) {
         if (binding.fromInput.text.toString() == "") {
-            binding.fromInput.setText(getString(com.isaev.network.R.string.moscow))
+            binding.fromInput.setText(getString(com.isaev.common.R.string.moscow))
         }
 
         (requireContext() as? TicketsOpener)?.openTickets(city, binding.fromInput.text.toString())
